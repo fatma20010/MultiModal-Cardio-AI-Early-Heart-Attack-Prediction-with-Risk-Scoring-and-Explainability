@@ -1,18 +1,7 @@
 import axios from 'axios';
 
-// API URL configuration for different environments
-const getApiUrl = () => {
-  // Check if we're in production
-  if (import.meta.env.PROD) {
-    // In production, use environment variable or fallback to same origin
-    return import.meta.env.VITE_API_URL || window.location.origin;
-  }
-  // In development, use localhost
-  return import.meta.env.VITE_API_URL || 'http://localhost:5000';
-};
-
-// LOVABLE DEPLOYMENT FIX: Use same origin for production deployment
-const API_URL = getApiUrl();
+// RAILWAY DEPLOYMENT FIX: Use same origin for full-stack deployment
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? window.location.origin : 'http://localhost:5000');
 
 // Debug logging
 console.log('API_URL:', API_URL);
