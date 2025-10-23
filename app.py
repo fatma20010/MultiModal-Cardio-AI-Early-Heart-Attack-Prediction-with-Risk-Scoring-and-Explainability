@@ -22,10 +22,8 @@ CORS(app, resources={
             "http://127.0.0.1:5173",
             "http://127.0.0.1:8080",
             "http://127.0.0.1:3000",
-            # Add your deployed frontend URLs here
-            # "https://your-frontend-domain.com",
-            # "https://your-app.vercel.app",
-            # "https://your-app.netlify.app"
+            # Allow all origins for Lovable deployment
+            "*"
         ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
