@@ -4,15 +4,20 @@ import axios from 'axios';
 const getApiUrl = () => {
   // Check if we're in production
   if (import.meta.env.PROD) {
-    // In production, use environment variable or fallback to relative URL
-    return import.meta.env.VITE_API_URL || '/api';
+    // In production, use environment variable or fallback to same origin
+    return import.meta.env.VITE_API_URL || window.location.origin;
   }
   // In development, use localhost
   return import.meta.env.VITE_API_URL || 'http://localhost:5000';
 };
 
-// LOVABLE DEPLOYMENT FIX: Use relative URL for same-domain deployment
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:5000');
+// LOVABLE DEPLOYMENT FIX: Use same origin for production deployment
+const API_URL = getApiUrl();
+
+// Debug logging
+console.log('API_URL:', API_URL);
+console.log('Environment:', import.meta.env.MODE);
+console.log('Production:', import.meta.env.PROD);
 
 export interface ClinicalData {
   age: number;
