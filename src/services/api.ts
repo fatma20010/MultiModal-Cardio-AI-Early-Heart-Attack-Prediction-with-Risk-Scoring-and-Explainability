@@ -1,6 +1,17 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// API URL configuration for different environments
+const getApiUrl = () => {
+  // Check if we're in production
+  if (import.meta.env.PROD) {
+    // In production, use environment variable or fallback to relative URL
+    return import.meta.env.VITE_API_URL || '/api';
+  }
+  // In development, use localhost
+  return import.meta.env.VITE_API_URL || 'http://localhost:5000';
+};
+
+const API_URL = getApiUrl();
 
 export interface ClinicalData {
   age: number;
